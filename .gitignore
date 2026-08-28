@@ -24,6 +24,8 @@ venv/
 env/
 dist/
 build/
+*.spec
+*.zip
 
 # File di sistema e IDE
 .idea/

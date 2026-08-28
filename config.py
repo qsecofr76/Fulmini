@@ -1,11 +1,31 @@
-# ==============================================================================
-# CONFIGURAZIONE SISTEMA CATTURA FULMINI (ZWO ASI)
-# ==============================================================================
 import os
+import sys
+
+def get_app_dir():
+    """Restituisce la cartella dell'eseguibile compilato o dello script sorgente."""
+    if getattr(sys, 'frozen', False):
+        return os.path.dirname(os.path.abspath(sys.executable))
+    return os.path.dirname(os.path.abspath(__file__))
+
+def get_resource_path(relative_path):
+    """Restituisce il percorso di una risorsa (icona, dll, json), gestendo PyInstaller."""
+    # 1. Controlla prima nella cartella dell'applicazione (permettendo personalizzazioni utente)
+    app_dir = get_app_dir()
+    cand = os.path.join(app_dir, relative_path)
+    if os.path.exists(cand):
+        return cand
+
+    # 2. Controlla nella cartella temporanea interna di PyInstaller
+    if hasattr(sys, '_MEIPASS'):
+        cand_meipass = os.path.join(sys._MEIPASS, relative_path)
+        if os.path.exists(cand_meipass):
+            return cand_meipass
+
+    return cand
 
 # --- Percorsi ---
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SDK_DLL_PATH = os.path.join(BASE_DIR, "ASICamera2.dll")
+BASE_DIR = get_app_dir()
+SDK_DLL_PATH = get_resource_path("ASICamera2.dll")
 OUTPUT_DIR = os.path.join(BASE_DIR, "captures")
 
 # --- Parametri Camera ---

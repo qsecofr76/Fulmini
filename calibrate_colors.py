@@ -433,7 +433,7 @@ class ColorCalibrationApp(QMainWindow):
         self.resize(1440, 890)
 
         # Icona applicazione
-        icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "icon.png")
+        icon_path = config.get_resource_path("icon.png")
         if os.path.exists(icon_path):
             self.setWindowIcon(QIcon(icon_path))
 

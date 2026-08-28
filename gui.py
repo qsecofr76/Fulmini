@@ -530,7 +530,7 @@ class LightningHunterGUI(QMainWindow):
         self.setMinimumSize(1080, 720)
 
         # Icona applicazione
-        icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "icon.png")
+        icon_path = config.get_resource_path("icon.png")
         if os.path.exists(icon_path):
             self.setWindowIcon(QIcon(icon_path))
 
@@ -565,7 +565,7 @@ class LightningHunterGUI(QMainWindow):
 
     def load_custom_calibration(self):
         """Carica il file camera_calibration.json se presente."""
-        json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "camera_calibration.json")
+        json_path = config.get_resource_path("camera_calibration.json")
         if os.path.exists(json_path):
             try:
                 import json

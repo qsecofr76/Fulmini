@@ -12,7 +12,7 @@ from ser_writer import read_ser, COLOR_MONO, COLOR_BAYER_RGGB, COLOR_BAYER_BGGR,
 
 def get_calibration_matrix():
     """Recupera la matrice di calibrazione da file JSON se esiste, altrimenti usa default calibrato."""
-    json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "camera_calibration.json")
+    json_path = config.get_resource_path("camera_calibration.json")
     if os.path.exists(json_path):
         try:
             with open(json_path, "r", encoding="utf-8") as f:

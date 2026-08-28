@@ -1,0 +1,33 @@
+# ==============================================================================
+# .gitignore per Progetto FULMINI
+# ==============================================================================
+
+# Cartella acquisizioni video, foto e somme temporalesche
+captures/
+*.ser
+*.tiff
+*.tif
+*.fits
+*.fit
+
+# File temporanei e di debug
+calibration_debug.jpg
+test_*
+test.*
+
+# Python bytecode & ambienti virtuali
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+dist/
+build/
+
+# File di sistema e IDE
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+*.log

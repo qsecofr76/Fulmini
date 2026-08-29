@@ -8,6 +8,7 @@ import argparse
 import numpy as np
 import tifffile
 import cv2
+import config
 from ser_writer import read_ser, COLOR_MONO, COLOR_BAYER_RGGB, COLOR_BAYER_BGGR, COLOR_BAYER_GRBG, COLOR_BAYER_GBRG, COLOR_RGB
 
 def get_calibration_matrix():

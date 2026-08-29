@@ -1080,7 +1080,7 @@ class LightningHunterGUI(QMainWindow):
 
         trig_grid.addWidget(QLabel("Metodo Stacking TIFF:"), 7, 0)
         self.stack_combo = QComboBox()
-        self.stack_combo.addItems(["MAX (Consigliato per fulmini)", "SUM", "AVERAGE"])
+        self.stack_combo.addItems(["MAX (Consigliato per fulmini)", "AVERAGE (Media)"])
         trig_grid.addWidget(self.stack_combo, 7, 1, 1, 2)
 
         trig_layout.addWidget(trig_box)

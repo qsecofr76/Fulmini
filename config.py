@@ -60,5 +60,5 @@ COOLDOWN_SECONDS = 0.5         # Pausa minima tra due trigger consecutivi
 
 # --- Post-Processing Stacking (.TIFF) ---
 AUTO_STACK_TIFF = False      # Scrive solo file .SER durante l'acquisizione. Lo stacking avviene dopo su richiesta o in batch.
-STACK_METHOD = "MAX"         # "MAX" (Maximum Intensity Projection - Consigliato per fulmini) o "SUM" o "AVERAGE"
+STACK_METHOD = "MAX"         # "MAX" (Maximum Lighten - Consigliato per fulmini) o "AVERAGE" (Media)
 SAVE_JPEG_PREVIEW = True     # Salva anche un file .jpg per visualizzazione rapida durante lo stacking

@@ -36,25 +36,19 @@ def get_calibration_matrix():
 def stack_frames(frames, method="MAX"):
     """
     Effettua lo stacking di una lista di frame.
-    - "MAX": Maximum Intensity Projection (Lighten Blend) - Ideale per fulmini.
-    - "SUM": Somma cumulativa lineare con clipping.
-    - "AVERAGE": Media dei frame.
+    - "MAX": Maximum Intensity Projection (Lighten Blend) - Ideale per fulmini e scariche.
+    - "AVERAGE": Media fotogrammi (per riduzione rumore).
     """
     if not frames:
         raise ValueError("Nessun frame da sommare.")
 
     stack_array = np.stack(frames, axis=0)
 
-    if method.upper() == "MAX":
-        stacked = np.max(stack_array, axis=0)
-    elif method.upper() == "SUM":
-        summed = np.sum(stack_array.astype(np.float32), axis=0)
-        max_val = 65535 if frames[0].dtype == np.uint16 else 255
-        stacked = np.clip(summed, 0, max_val).astype(frames[0].dtype)
-    elif method.upper() == "AVERAGE":
+    if method.upper() == "AVERAGE":
         avg = np.mean(stack_array.astype(np.float32), axis=0)
         stacked = avg.astype(frames[0].dtype)
     else:
+        # Default: MAX (Maximum Lighten)
         stacked = np.max(stack_array, axis=0)
 
     return stacked
@@ -175,7 +169,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Stacker .SER -> .TIFF con Profilo Colore Reflex")
     parser.add_argument("file", nargs="?", help="Percorso del file .ser da elaborare")
     parser.add_argument("--dir", default="captures", help="Cartella con i file .ser da elaborare in batch")
-    parser.add_argument("--method", default="MAX", choices=["MAX", "SUM", "AVERAGE"], help="Metodo di stacking")
+    parser.add_argument("--method", default="MAX", choices=["MAX", "AVERAGE"], help="Metodo di stacking")
     args = parser.parse_args()
 
     if args.file:
